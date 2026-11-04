@@ -11,7 +11,7 @@ Este repositorio contiene el **código fuente y los scripts de construcción** p
 - `bootx64.c`: cargador de arranque UEFI propio (código fuente).
 - `construir_rodso_7.3.1.sh`: descarga, configura y compila Linux 7.3.1; prepara la ISO.
 - `build_initramfs.py`: construye el sistema GNU en RAM usando herramientas del anfitrión.
-- `build_iso.py`: genera ISO9660 con entrada El Torito UEFI y partición FAT16 EFI.
+- `build_iso.py`: genera ISO9660 con arranque El Torito UEFI y una imagen FAT16 EFI mediante xorriso/mtools.
 - `verify_iso.py`: comprobaciones estructurales del contenedor ISO/EFI.
 - `LEEME.txt`: guía detallada de construcción, uso y limitaciones.
 
@@ -21,7 +21,7 @@ Este repositorio contiene el **código fuente y los scripts de construcción** p
 sudo apt update
 sudo apt install -y build-essential bc bison flex libssl-dev libelf-dev \
     cpio gzip curl xz-utils python3 file binutils busybox tar \
-    util-linux coreutils grep sed gawk findutils clang lld libarchive13
+    util-linux coreutils grep sed gawk findutils clang lld xorriso mtools dosfstools
 chmod +x construir_rodso_7.3.1.sh
 ./construir_rodso_7.3.1.sh
 ```
