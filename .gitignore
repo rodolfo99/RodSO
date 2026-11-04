@@ -1,0 +1,13 @@
+# Resultados generados localmente
+compilacion/
+resultados/
+*.iso
+*.iso.sha256
+*.img
+*.o
+*.obj
+*.efi
+*.EFI
+linux-*.tar.xz
+__pycache__/
+*.pyc
