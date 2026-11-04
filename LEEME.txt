@@ -1,0 +1,49 @@
+RodSO GNU/Linux 0.2 — Guía de construcción
+
+RodSO es un prototipo de sistema operativo ligero en RAM para UEFI x86-64.
+El kernel seleccionado es Linux 7.3.1, compilado localmente desde el código
+oficial descargado de https://cdn.kernel.org/pub/linux/kernel/v7.x/.
+
+Estado: el arranque completo con Linux 7.3.1 NO ha sido probado. Tampoco
+se ha probado esta versión en un USB físico. El proyecto es experimental.
+
+REQUISITOS
+Ubuntu o Debian x86-64, conexión a Internet, espacio libre y herramientas
+de desarrollo. Instalar:
+
+sudo apt update
+sudo apt install -y build-essential bc bison flex libssl-dev libelf-dev \
+  cpio gzip curl xz-utils python3 file binutils busybox tar \
+  util-linux coreutils grep sed gawk findutils clang lld xorriso mtools dosfstools
+
+COMPILACIÓN
+chmod +x construir_rodso_7.3.1.sh
+./construir_rodso_7.3.1.sh
+
+Resultado esperado:
+resultados/RodSO-Live-0.2-Linux-7.3.1-x86_64-UEFI.iso
+
+El script compila el cargador BOOTX64.EFI desde bootx64.c, descarga y
+compila Linux 7.3.1, construye un initramfs con herramientas GNU del
+equipo anfitrión, crea la ISO con imagen EFI y comprueba su estructura.
+
+USO
+1. Prueba primero la ISO en una máquina virtual UEFI x86-64.
+2. Para usar Rufus, selecciona la ISO y un pendrive. El contenido previo
+   del pendrive se perderá. Secure Boot debe estar desactivado.
+3. RodSO inicia una terminal GNU Bash. Teclea ayuda.
+4. Para conservar archivos: montar-usb, guardar-usb ARCHIVO,
+   desmontar-usb. Los datos en RAM se borran al apagar.
+
+LIMITACIONES
+Sin escritorio gráfico, instalador, red configurada ni sistema de
+actualización. El sistema arranca en RAM. La capacidad de escritura en
+el pendrive depende de que exista otra partición escribible. Una ISO
+por sí sola no ofrece persistencia. No uses RodSO para guardar datos
+importantes sin disponer de una copia de seguridad.
+
+LICENCIAS
+Scripts y cargador RodSO: MIT. Kernel Linux: GPL-2.0-only.
+Herramientas GNU y dependencias: licencias propias. El repositorio
+contiene scripts y código propio, no el árbol completo del kernel ni
+las herramientas GNU integradas.
